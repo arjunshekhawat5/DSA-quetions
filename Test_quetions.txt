@@ -1,0 +1,189 @@
+Gameskraft  
+    Q1-
+        matric nXn
+        [1, 0]
+        find square submatrix of maximum size formed with 1
+        1 1 1 1 1
+        1 1 1 0 0
+        1 1 1 0 0
+        1 1 1 1 1
+    Q2 - paths to a goal
+        r, l = (1, -1)
+        [1, 1, -, 1, 1, -1, 1]
+        input = string s = 'rrlrlr' r - right l - left
+                  int n = lenght of line segment starting at 1   eg. - 1-2-3-4-5-6
+                  x, y = start value, target value     eg - 2, 5
+        output = number of subsequences from the given string to reach the target value
+        sample input - 6
+                       1, 3
+        sample output - 7
+                    cases - 1 - rr   1 -> 2 -> 3
+                           2 - rrlr
+                           3 - rrlrlr
+                           4 - rlrr
+                           5 - rrrl
+                a = [1,2,1,2,1,2]
+                b = [2,1,0,1,0,1]
+                1,1-1,1, 
+    Q3 - input -
+            n values - [2,3,4]
+            m values - [3,3,3]
+            totalCost - [1,2,2]
+
+            function totalCost(arr):
+                curr_max = arr[0]
+                totalCost = 0
+                for i in arr:
+                    if i > curr_max:
+                        curr_max = i
+                        totalCost += 1
+                
+                return totalCost
+            
+            cost to find the max element in array is totalCost
+            
+            n - length of array to form 
+            m - range of values that can be used to fill the array of len n
+
+        output - number of arrays that can be formed with n,m and totalCost from their respective query.
+
+        sample input n = 4, m = 4, totalCost = 2
+                output = 30
+            eg.      [1,1,2,3], [1,2,3,1]
+        
+Alphonso
+    Q1-
+        string - ababcab
+        t - abb
+        array- [2,3,4,5,1]
+    
+    Q2- 
+        you have to go to office from your home which is located at 0,0 ans office at x,y
+        there are obstacles with value 1
+        it is raining and there are potholes on the road
+        every pothole opens at a given time we are given all position of potholes and their time of opening 
+        we start at time 0
+        we have to find the shorted time taken to reach the office
+        
+Standard Charted  
+    Q1- 
+    arr = [ [1,2,-3,2,1] , 
+            [3,5,2.-3.3]
+            ]
+
+    ans = map(
+        # Add code such that ans is a 2D matrix of squares of positive integers of arr
+        
+    , arr)
+
+    return ans
+
+Dgraph
+    Q1 - input - n - length of line segment eg. n=10 -> 1-2-3-4-5-6-7-8-9-10
+                starting - [3, 1, 2, 8,  8]
+                endings - [5, 3, 7, 10, 10]
+            out put number of non-overlapping pairs
+            explanation
+            1-2-3-4-5-6-7-8-9-10
+                \---\               3-5  -- 1
+            \---\                   1-3  -- 2
+              \---------\           2-7  -- 3
+                          \---\     8-10 -- 4
+                          \---\     8-10 -- 5  (we will ignore this as this is same as above segment)
+            
+            1 and 4
+            2 and 4
+            3 and 4
+        Output - 3
+        1-3
+        end  = 3
+
+
+    Q2 - input - 
+                no of cartiridge - you have empty cartiridges you can exchange for money or perks
+                dollars - you have dollars
+                recycleReward - dollars awarded for 1 cartiridge
+                perkCost - n dollars with 1 cartiridge for 1 perk
+        output - find the maximum perks you can get
+        eg - input- 10
+                    10
+                    2
+                    2
+            output - 7
+                after exchanging 3 cartiridges you get 6 dollars
+                now you have total 16 dollars and 7 cartiridge
+                you can exchange 14 dollars with 7 cartiridges to get 7 perks
+    
+    Q3 - input - origin cites -  [1,2,3,4,5,2]
+                 destination cites - [3,2,1,8,7,3]
+                 thresold - integer - 1
+                 a path is present only if gcd of origin and destination is greater then thresold value
+
+        output - output an array of true and false for every origin city if path exits between its corresponding destination.
+
+Accenture
+    Q1 - given array of length n with integers, find all the subarrays of length 3 with sum = k.
+
+Nference
+    Q1 - 
+        count all the unique substrings of a given string of length n which forms palindrome.
+        input = 'abbbc'
+        output - 5
+        explanation
+            'bb', 'b', 'bbb', 'c', 'a'
+            5
+    
+    Q2 - 
+        Given n and k where n is available number of integers from 1-n find all the possible unique ways we can form an array of any length which sums up to k.
+        input- 3,5
+        output - 5
+        explanation-
+            [1,1,1,1,1]
+            [1,1,1,2]
+            [1,2,2]
+            [1,1,3]
+            [2,3]
+
+Codenation
+    Q1 - 
+        SSC-
+        give number of nodes and th
+    
+    
+            
+
+
+
+
+
+
+def path(arr, time):
+    def dfs(i, j, t):
+        if i == len(arr)-1 and j == len(arr[0]) - 1:
+            return t
+
+        if i > 0:
+            if arr[i-1][j] == 0:
+                dfs(i-1, j, t+1)
+            elif arr[i-1][j] == -1 and time[i-1][j] > t:
+                dfs(i-1, j, t+1)
+
+        if j > 0:
+            if arr[i][j-1] == 0:
+                dfs(i, j-1, t+1)
+            elif arr[i][j-1] == -1 and time[i][j-1] > t:
+                dfs(i, j-1, t+1)
+
+        if i + 1 < len(arr):
+            if arr[i+1][j] == 0:
+                dfs(i+1, j, t+1)
+            elif arr[i+1][j] == -1 and time[i+1][j+1] > t:
+                dfs(i+1, j, t+1)
+
+        if j + 1 < len(arr):
+            if arr[i][j+1] == 0:
+                dfs(i, j+1, t+1)
+            elif arr[i][j+1] == -1 and time[i][j+1] > t:
+                dfs(i, j+1, t+1)
+
+    return dfs(0, 0, 0)
